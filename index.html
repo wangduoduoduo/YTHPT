@@ -1,0 +1,537 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>通州区"智慧+"教学研评一体化平台</title>
+    <script src="https://cdn.tailwindcss.com/3.3.3"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            color: #334155;
+        }
+        
+        .glassmorphism {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 28px 0 rgba(31, 38, 135, 0.15);
+        }
+        
+        .module-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: white;
+            margin-right: 16px;
+        }
+        
+        .feature-pill {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+            margin-right: 8px;
+            margin-bottom: 8px;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .animate-fade-in {
+            animation: fadeIn 0.6s ease forwards;
+        }
+        
+        .mobile-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            padding: 1rem;
+            margin: 0.5rem;
+            border-radius: 0.75rem;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+            transform-origin: top;
+            transform: scaleY(0);
+            opacity: 0;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+            z-index: 100;
+        }
+        
+        .mobile-menu.active {
+            transform: scaleY(1);
+            opacity: 1;
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+    <!-- 导航条 -->
+    <nav class="glassmorphism sticky top-0 z-50 p-4 mb-8" id="mainNav">
+        <div class="container mx-auto flex items-center justify-between">
+            <div class="text-xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 text-transparent bg-clip-text">
+                <i class="fas fa-graduation-cap mr-2"></i>通州区"智慧+"教学研评一体化平台
+            </div>
+            <div class="hidden md:flex space-x-6">
+                <a href="#overview" class="text-gray-600 hover:text-blue-600 transition-colors">平台概览</a>
+                <a href="#teach" class="text-gray-600 hover:text-blue-600 transition-colors">"教"模块</a>
+                <a href="#learn" class="text-gray-600 hover:text-blue-600 transition-colors">"学"模块</a>
+                <a href="#research" class="text-gray-600 hover:text-blue-600 transition-colors">"研"模块</a>
+                <a href="#evaluate" class="text-gray-600 hover:text-blue-600 transition-colors">"评"模块</a>
+            </div>
+            <button class="md:hidden text-gray-600 focus:outline-none" id="mobileMenuButton" aria-label="导航菜单">
+                <i class="fas fa-bars"></i>
+            </button>
+
+            <!-- 移动端导航菜单 -->
+            <div class="mobile-menu md:hidden" id="mobileMenu">
+                <a href="#overview" class="text-gray-600 hover:text-blue-600 transition-colors flex items-center">
+                    <i class="fas fa-info-circle mr-3 text-blue-500"></i>平台概览
+                </a>
+                <a href="#teach" class="text-gray-600 hover:text-blue-600 transition-colors flex items-center">
+                    <i class="fas fa-chalkboard-teacher mr-3 text-blue-500"></i>"教"模块
+                </a>
+                <a href="#learn" class="text-gray-600 hover:text-blue-600 transition-colors flex items-center">
+                    <i class="fas fa-book-reader mr-3 text-blue-500"></i>"学"模块
+                </a>
+                <a href="#research" class="text-gray-600 hover:text-blue-600 transition-colors flex items-center">
+                    <i class="fas fa-search mr-3 text-blue-500"></i>"研"模块
+                </a>
+                <a href="#evaluate" class="text-gray-600 hover:text-blue-600 transition-colors flex items-center">
+                    <i class="fas fa-clipboard-check mr-3 text-blue-500"></i>"评"模块
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 平台概览 -->
+    <section id="overview" class="container mx-auto py-12 px-4 md:px-8 animate-fade-in" style="animation-delay: 0.1s;">
+        <div class="glassmorphism p-8 mb-12">
+            <h1 class="text-3xl md:text-4xl font-bold mb-6 text-center text-gray-800">
+                通州区"智慧+"教学研评一体化平台
+            </h1>
+            <p class="text-lg text-gray-600 mb-8 text-center">
+                由通州区教委指导建设，致力于通过数字技术为通州区中小学校、师生及区域教学教研管理部门提供全面的教育数字化服务
+            </p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+                <div class="glassmorphism p-6 text-center card-hover">
+                    <div class="module-icon bg-blue-500 mx-auto mb-4">
+                        <i class="fas fa-chalkboard-teacher"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">"智慧+"教学</h3>
+                    <p class="text-gray-600 text-sm">为教师提供数字化教学支持</p>
+                </div>
+                <div class="glassmorphism p-6 text-center card-hover">
+                    <div class="module-icon bg-green-500 mx-auto mb-4">
+                        <i class="fas fa-book-reader"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">"智慧+"学习</h3>
+                    <p class="text-gray-600 text-sm">支持学生个性化学习</p>
+                </div>
+                <div class="glassmorphism p-6 text-center card-hover">
+                    <div class="module-icon bg-purple-500 mx-auto mb-4">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">"智慧+"研修</h3>
+                    <p class="text-gray-600 text-sm">促进教师专业发展</p>
+                </div>
+                <div class="glassmorphism p-6 text-center card-hover">
+                    <div class="module-icon bg-orange-500 mx-auto mb-4">
+                        <i class="fas fa-clipboard-check"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">"智慧+"评价</h3>
+                    <p class="text-gray-600 text-sm">科学评估教学成效</p>
+                </div>
+            </div>
+            
+            <div class="bg-blue-50 rounded-xl p-6 mb-6">
+                <h3 class="text-xl font-semibold mb-4 text-blue-800">平台特色</h3>
+                <div class="flex flex-wrap">
+                    <div class="feature-pill bg-blue-100 text-blue-800"><i class="fas fa-check-circle mr-1"></i> 20+教育场景应用</div>
+                    <div class="feature-pill bg-green-100 text-green-800"><i class="fas fa-check-circle mr-1"></i> 全面数字化服务</div>
+                    <div class="feature-pill bg-purple-100 text-purple-800"><i class="fas fa-check-circle mr-1"></i> 高效服务支撑</div>
+                    <div class="feature-pill bg-orange-100 text-orange-800"><i class="fas fa-check-circle mr-1"></i> 优质资源共享</div>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div>
+                    <h3 class="text-xl font-semibold mb-4 text-gray-800">平台价值</h3>
+                    <p class="text-gray-600 mb-4">平台汇聚"智慧＋"教学、"智慧＋"学习、"智慧＋"研修、"智慧＋"评价四大主题业务服务，提供包括数字课程创享、科学数字课程、人工智能课程、在线研修协作等20余个教育场景应用服务，全面支撑教、学、研、评各业务活动的高效开展。</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold mb-4 text-gray-800">服务对象</h3>
+                    <div class="flex flex-wrap">
+                        <div class="feature-pill bg-gray-100 text-gray-800"><i class="fas fa-user-tie mr-1"></i> 中小学教师</div>
+                        <div class="feature-pill bg-gray-100 text-gray-800"><i class="fas fa-user-graduate mr-1"></i> 中小学生</div>
+                        <div class="feature-pill bg-gray-100 text-gray-800"><i class="fas fa-chalkboard-user mr-1"></i> 研修员</div>
+                        <div class="feature-pill bg-gray-100 text-gray-800"><i class="fas fa-school mr-1"></i> 教学管理部门</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- "教"模块 -->
+    <section id="teach" class="container mx-auto py-12 px-4 md:px-8 animate-fade-in" style="animation-delay: 0.2s;">
+        <div class="glassmorphism p-8 mb-12">
+            <div class="flex items-center mb-6">
+                <div class="module-icon bg-blue-500">
+                    <i class="fas fa-chalkboard-teacher"></i>
+                </div>
+                <div>
+                    <h2 class="text-2xl font-bold text-gray-800">"教"模块</h2>
+                    <p class="text-gray-600">服务对象：中小学教师</p>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div>
+                    <h3 class="text-xl font-semibold mb-3 text-gray-800">数字课程创享</h3>
+                    <p class="text-gray-600 mb-4">支持个人或多人协作进行数字化课程的研发，包含课程协作编辑、教与学活动设计工具、课程共享迭代、个人及组织课程管理、组织协作数据统计、专业社区化互动等功能，满足优质课程资源共享需求，提高课程开发效率和教学质量。</p>
+                    <div class="bg-blue-50 rounded-lg p-4 mb-4">
+                        <p class="text-blue-800 font-medium"><i class="fas fa-info-circle mr-2"></i>使用场景：集体备课、资源共享</p>
+                    </div>
+                    <p class="text-gray-600 mb-4">数字化课程包含教学方案、学习方案、课程设计、课程文件、评价设计、贡献等基本内容，课程创建者可以进行课程信息、协作团队管理，课程协作者可进行课程基本内容的协同编辑。无协作权限的组织成员可浏览组织的公开课程，获取后进行二次编创，不影响原课程内容。</p>
+                </div>
+                <div>
+                    <img src="https://s.coze.cn/image/ochnYLdc2YM/" alt="数字课程创享" class="w-full h-auto rounded-lg shadow-md">
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
+                <div>
+                    <h3 class="text-xl font-semibold mb-3 text-gray-800">学校线上教学</h3>
+                    <p class="text-gray-600 mb-4">用于支持教师进行线上教学活动以及双师教学活动，教师可以通过云盘功能存储课件，通过板书功能进行互动板书备课，通过线上教学功能打破距离限制，实现随时随地开展教学活动。</p>
+                    <div class="bg-blue-50 rounded-lg p-4 mb-4">
+                        <p class="text-blue-800 font-medium"><i class="fas fa-info-circle mr-2"></i>使用场景：线上教学、双师课堂、云端录课</p>
+                    </div>
+                    <p class="text-gray-600 mb-4">双师课堂将学校的智慧教室与线上教学软件相结合，将其他学校或其他班级的课程引入课堂，教师可以协同备课，交替授课，拓展课程深度与广度，促进教学效率提升。</p>
+                    <p class="text-gray-600">云端录课功能可以帮助教师轻松记录自己的课堂实况，这些录课视频可以随时查看、下载，既可以用于教师个人的教学反思，也可以在校内、区内进行分享，成为教研活动和新教师培养的鲜活素材。</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold mb-3 text-gray-800">学校线下教学</h3>
+                    <p class="text-gray-600 mb-4">用于支持线下常态化教学应用的数字资源和教学工具，可以应用数字课程创享板块以及数字资源板块的电子教材等教学资源。</p>
+                    <div class="bg-blue-50 rounded-lg p-4 mb-4">
+                        <p class="text-blue-800 font-medium"><i class="fas fa-info-circle mr-2"></i>使用场景：线下数字化教学、双师课堂、录课</p>
+                    </div>
+                    <p class="text-gray-600 mb-4">同时支持50页电子板书书写、多种线下教学工具的使用。</p>
+                    <p class="text-gray-600">本地录课与云端录课功能可以帮助教师轻松记录自己的课堂实况，这些录课视频可以随时查看、下载，既可以用于教师个人的教学反思，也可以在校内、区内进行分享，成为教研活动和新教师培养的鲜活素材。</p>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
+                <div>
+                    <h3 class="text-xl font-semibold mb-3 text-gray-800">数字资源</h3>
+                    <p class="text-gray-600 mb-4">数字资源汇聚国家课程标准、中小学各学科电子教材共204个文件，以单元主题-学科-资源分级方式进行梳理及内容展示，支持研修中心全体研修员在线查找、浏览、授权下载，并可进行课程文件及内容的编辑，满足日常工作参考资料的查询阅览需求。</p>
+                    <div class="bg-blue-50 rounded-lg p-4">
+                        <p class="text-blue-800 font-medium"><i class="fas fa-info-circle mr-2"></i>使用场景：课标及电子教材资源共创共享</p>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold mb-3 text-gray-800">运河思政/学科网</h3>
+                    <p class="text-gray-600 mb-4">平台整合通州区大中小学思想政治教育一体化网络资源数字平台，为用户提供包含运河遗迹导览、思政基地导览、思政课程导览三个模块的运河思政特色课程资源，辅助教师及教研员开展思政教学及教研活动。</p>
+                    <div class="bg-blue-50 rounded-lg p-4 mb-4">
+                        <p class="text-blue-800 font-medium"><i class="fas fa-info-circle mr-2"></i>使用场景：特色课程资源共享</p>
+                    </div>
+                    <p class="text-gray-600 mb-4">运河遗迹导览支持以地图模式查看通州大运河流域遗迹分布，点击可观看相关思政教育主题的微课视频；思政基地导览支持以地图模式查看思政教育基地分布，扫描查看各基地介绍；思政课程导览汇聚包含贯通课程、基地课程、思政"金课"、跨学科课程、润心课程、其他课程的教学设计及教学案例，支持用户在线浏览及下载。</p>
+                    <p class="text-gray-600">平台整合学科网资源，它是面向中小学师生的综合性数字教育平台，其核心功能是提供海量、与主流教材严格同步的、历年更新的精选试题、课件和教案，主要优点是资源聚合度高、针对性强，能极大地提高教师的备课效率和学生的应试训练质量。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- "学"模块 -->
+    <section id="learn" class="container mx-auto py-12 px-4 md:px-8 animate-fade-in" style="animation-delay: 0.3s;">
+        <div class="glassmorphism p-8 mb-12">
+            <div class="flex items-center mb-6">
+                <div class="module-icon bg-green-500">
+                    <i class="fas fa-book-reader"></i>
+                </div>
+                <div>
+                    <h2 class="text-2xl font-bold text-gray-800">"学"模块</h2>
+                    <p class="text-gray-600">服务对象：中小学教师及学生</p>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div>
+                    <h3 class="text-xl font-semibold mb-3 text-gray-800">精准教学</h3>
+                    <p class="text-gray-600 mb-4">通过导入学生信息、课件和作业数据，实现课堂教学与作业管理的数字化，支持上课互动、作业讲解、靶向训练等功能，助力教师精准教学和学生个性化学习。</p>
+                    <div class="bg-green-50 rounded-lg p-4">
+                        <p class="text-green-800 font-medium"><i class="fas fa-info-circle mr-2"></i>使用场景：课件导入、作业讲解、靶向作业</p>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold mb-3 text-gray-800">科学数字课程</h3>
+                    <p class="text-gray-600 mb-4">教师可以通过平台进行实验课程的备课，通过丰富的微课资源更生动地进行知识点的讲解，同时虚拟实验可以提升实验教学的安全性。</p>
+                    <div class="bg-green-50 rounded-lg p-4 mb-4">
+                        <p class="text-green-800 font-medium"><i class="fas fa-info-circle mr-2"></i>使用场景：精品实验、获奖微课、虚拟实验操作</p>
+                    </div>
+                    <p class="text-gray-600">学生可以通过平台开展虚拟实验课程在线自主学习，包含初中理化生相关学生自主学习资源，如实验课例视频、互动课件、观察实验、探究实验等。</p>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
+                <div>
+                    <h3 class="text-xl font-semibold mb-3 text-gray-800">人工智能课程</h3>
+                    <p class="text-gray-600 mb-4">支持信息技术教师开展人工智能课程教学活动，包含AI基础理论、AI学习方式、AI学习工具、AIGC应用共四个模块26个主题。每个主题包含录播课、学习资料和讨论环节，学生们可以通过教室内的教学一体机进行学习以及讨论。</p>
+                    <div class="bg-green-50 rounded-lg p-4 mb-4">
+                        <p class="text-green-800 font-medium"><i class="fas fa-info-circle mr-2"></i>使用场景：AI理论学习、AI知识拓展、AIGC应用案例</p>
+                    </div>
+                    <p class="text-gray-600 mb-4">录播课是本课程的核心视频资源，按照课程章节精心制作，系统讲解关于人工智能的概念、原理、应用案例等。视频时长在4-8分钟不等，内容生动有趣，通过动画演示、实际案例展示等方式，让复杂的知识变得通俗易懂。</p>
+                    <p class="text-gray-600">依据不同的学习主题内容，为学生提供拓展阅读的图文资料、媒体链接，方便大家获取与主题相关的知识内容，了解人工智能发展资讯，学习视频、科普文章、专业论文等。</p>
+                </div>
+                <div>
+                    <img src="https://s.coze.cn/image/5dV_4bf2sXM/" alt="人工智能课程" class="w-full h-auto rounded-lg shadow-md">
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
+                <div>
+                    <h3 class="text-xl font-semibold mb-3 text-gray-800">心理健康小知识</h3>
+                    <p class="text-gray-600 mb-4">"国家心理健康网"围绕"全民心理健康"展开，集心理科普、心理咨询、培训教育于一体，支持心理专题资源学习，发布心理科普文章，帮助识别、理解并应对心理问题。</p>
+                    <div class="bg-green-50 rounded-lg p-4">
+                        <p class="text-green-800 font-medium"><i class="fas fa-info-circle mr-2"></i>使用场景：心理科普、心理咨询</p>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold mb-3 text-gray-800">智慧纸笔学习系统</h3>
+                    <p class="text-gray-600 mb-4">支持学生利用智能笔终端书写，实现学习数据无感知、伴随性记录的学习系统，包含高质量学习系统、课堂互动系统、过程性数据分析系统、数据采集终端等。</p>
+                    <div class="bg-green-50 rounded-lg p-4">
+                        <p class="text-green-800 font-medium"><i class="fas fa-info-circle mr-2"></i>使用场景：学习数据记录、学习过程数据分析</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- "研"模块 -->
+    <section id="research" class="container mx-auto py-12 px-4 md:px-8 animate-fade-in" style="animation-delay: 0.4s;">
+        <div class="glassmorphism p-8 mb-12">
+            <div class="flex items-center mb-6">
+                <div class="module-icon bg-purple-500">
+                    <i class="fas fa-search"></i>
+                </div>
+                <div>
+                    <h2 class="text-2xl font-bold text-gray-800">"研"模块</h2>
+                    <p class="text-gray-600">服务对象：研修中心研修员</p>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div>
+                    <h3 class="text-xl font-semibold mb-3 text-gray-800">数字课程创享</h3>
+                    <p class="text-gray-600 mb-4">支持个人或多人协作进行数字化课程的研发，包含课程协作编辑、教与学活动设计工具、课程共享迭代、个人及组织课程管理、组织协作数据统计、专业社区化互动等功能，满足优质课程资源共享需求，提高课程开发效率和教学质量。</p>
+                    <div class="bg-purple-50 rounded-lg p-4 mb-4">
+                        <p class="text-purple-800 font-medium"><i class="fas fa-info-circle mr-2"></i>使用场景：研修资源共享、研修课程共创</p>
+                    </div>
+                    <p class="text-gray-600">数字化课程包含教学方案、学习方案、课程设计、课程文件、评价设计、贡献等基本内容，课程创建者可以进行课程信息、协作团队管理，课程协作者可进行课程基本内容的协同编辑。无协作权限的组织成员可浏览组织的公开课程，获取后进行二次编创，不影响原课程内容。</p>
+                </div>
+                <div>
+                    <img src="https://s.coze.cn/image/35ZhU9CyeWc/" alt="数字课程创享" class="w-full h-auto rounded-lg shadow-md">
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
+                <div>
+                    <h3 class="text-xl font-semibold mb-3 text-gray-800">在线研修协作</h3>
+                    <p class="text-gray-600 mb-4">在线研修协作支持学校和区域研修主管部门开展网络教研活动，提供满足多场景混合研修需求的应用，包含活动创设、交流讨论、同步/异步教研、资源管理、课堂实录、教研数据等。</p>
+                    <div class="bg-purple-50 rounded-lg p-4 mb-4">
+                        <p class="text-purple-800 font-medium"><i class="fas fa-info-circle mr-2"></i>使用场景：远程听评课、教师培训、网络教研等</p>
+                    </div>
+                    <p class="text-gray-600 mb-4">用户可创建教研组织，邀请内外部人员参加直播互动教研活动。活动支持多地多人多终端登陆，登陆后可进行音视频方式互动，支持多格式数字资源的展示、多人协作板书、录制及网页直播回放场景。</p>
+                    <p class="text-gray-600">组织内可创建录播、作业、测验、打卡等教研活动，支持活动创建者查看所有成员的活动完成情况，并导出数据。活动结束可进行活动星级评价及文字评价。</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold mb-3 text-gray-800">区校研修巡导</h3>
+                    <p class="text-gray-600 mb-4">区校研修训导支持用户实现对学校教学活动、区域教研活动等进行远程巡查与差异化指导。系统以无感接入技术实现无干扰巡课，包含课堂分类检索、实时听课监课、监课详情数据可视化分析等模块，保持课堂教学和教研活动的节奏性与连贯性，创新研修服务模式，提升学校课堂教学监督指导覆盖范围及工作效率。</p>
+                    <div class="bg-purple-50 rounded-lg p-4 mb-4">
+                        <p class="text-purple-800 font-medium"><i class="fas fa-info-circle mr-2"></i>使用场景：教学督导、远程巡课</p>
+                    </div>
+                    <p class="text-gray-600">授权用户可按照课堂名称、人员信息、开课时间、状态等进行进行分类检索；正在进行的活动，支持点击【进入教室】，进行教学互动画面观看，线上课堂的人员不会收到任何提示；已经结束的活动，支持查看课堂画面切片、教室进出人数、所有人员考情及在线详情数据图表。</p>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
+                <div>
+                    <h3 class="text-xl font-semibold mb-3 text-gray-800">双师骨干教师公开课</h3>
+                    <p class="text-gray-600 mb-4">双师骨干教师公开课用于区域优质双师课堂教学成果汇聚及展示，系统化管理全区骨干教师的精品课资源，支持全区教师观摩学习，最大化发挥名师的示范引领作用。</p>
+                    <div class="bg-purple-50 rounded-lg p-4 mb-4">
+                        <p class="text-purple-800 font-medium"><i class="fas fa-info-circle mr-2"></i>使用场景：双师精品公开课直播、录播、回看</p>
+                    </div>
+                    <p class="text-gray-600">用户可浏览公开课月历表，选择对应日期的课堂链接，观看课程直播或录课回放。也可选择平台推荐的相关课程，观看课程直播或录课回放。</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold mb-3 text-gray-800">学科网</h3>
+                    <p class="text-gray-600 mb-4">用户可获取由学科网提供的全学科试题、试卷、教案、课件、视频等数字资源，资源持续更新，满足研修员高效选题、组卷、出卷需求，支持章节、知识点、试卷等多种选题方式，并提供智能组卷、细目表组卷、AI辅助出题等功能，提升学科备考命题的精准性与效率。</p>
+                    <div class="bg-purple-50 rounded-lg p-4">
+                        <p class="text-purple-800 font-medium"><i class="fas fa-info-circle mr-2"></i>使用场景：学科网资源使用</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- "评"模块 -->
+    <section id="evaluate" class="container mx-auto py-12 px-4 md:px-8 animate-fade-in" style="animation-delay: 0.5s;">
+        <div class="glassmorphism p-8 mb-12">
+            <div class="flex items-center mb-6">
+                <div class="module-icon bg-orange-500">
+                    <i class="fas fa-clipboard-check"></i>
+                </div>
+                <div>
+                    <h2 class="text-2xl font-bold text-gray-800">"评"模块</h2>
+                    <p class="text-gray-600">服务对象：中小学教师及学生</p>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="glassmorphism p-6 card-hover">
+                    <h3 class="text-xl font-semibold mb-3 text-gray-800">教学质量监督平台</h3>
+                    <p class="text-gray-600 mb-4">服务全区组织开展学业质量评价工作，提供满足中小学教学质量监测需求的智能阅卷、成绩统计与报告导出等功能。</p>
+                    <div class="bg-orange-50 rounded-lg p-4">
+                        <p class="text-orange-800 font-medium"><i class="fas fa-info-circle mr-2"></i>使用场景：智能阅卷、成绩统计</p>
+                    </div>
+                </div>
+                <div class="glassmorphism p-6 card-hover">
+                    <h3 class="text-xl font-semibold mb-3 text-gray-800">教师综合评价服务</h3>
+                    <p class="text-gray-600 mb-4">服务区校教师管理部门开展教师综合评价，提供满足教师专业发展需求的综合评价服务，包含学术成果管理、评价追踪、教师发展综合档案袋等功能。</p>
+                    <div class="bg-orange-50 rounded-lg p-4">
+                        <p class="text-orange-800 font-medium"><i class="fas fa-info-circle mr-2"></i>使用场景：学术成果统计、教师档案管理、教师数据统计</p>
+                    </div>
+                </div>
+                <div class="glassmorphism p-6 card-hover">
+                    <h3 class="text-xl font-semibold mb-3 text-gray-800">学生综合评价服务</h3>
+                    <p class="text-gray-600 mb-4">服务学校开展学生综合评价，提供满足学生全面发展需求的综合评价服务，包含学生目标管理、学生过程性评价追踪、学生综合素质评价、学生成长档案等功能。</p>
+                    <div class="bg-orange-50 rounded-lg p-4">
+                        <p class="text-orange-800 font-medium"><i class="fas fa-info-circle mr-2"></i>使用场景：学业目标管理、过程性评价、综合素质评价</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 研研智能体 -->
+    <section id="ai-assistant" class="container mx-auto py-12 px-4 md:px-8 animate-fade-in" style="animation-delay: 0.6s;">
+        <div class="glassmorphism p-8">
+            <div class="flex items-center mb-6">
+                <div class="module-icon bg-indigo-500">
+                    <i class="fas fa-robot"></i>
+                </div>
+                <div>
+                    <h2 class="text-2xl font-bold text-gray-800">研研智能体</h2>
+                    <p class="text-gray-600">服务对象：研修中心全体研修员及中小学教师</p>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div>
+                    <p class="text-gray-600 mb-6">研研智能体是平台结合人工智能技术的创新探索，专门服务于广大教师和教育工作者。通过研研智能体可以了解最新的研修动态、政策解读、培训资源推荐及解答教师平台应用问题。</p>
+                    <div class="bg-indigo-50 rounded-lg p-4">
+                        <p class="text-indigo-800 font-medium"><i class="fas fa-info-circle mr-2"></i>业务场景：研修动态、智能问答</p>
+                    </div>
+                </div>
+                <div>
+                    <img src="https://s.coze.cn/image/htztbkZDhYw/" alt="研研智能体" class="w-full h-auto rounded-lg shadow-md">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="bg-gray-50 py-8 mt-12">
+        <div class="container mx-auto px-4 md:px-8 text-center text-gray-600">
+                       <p>creat by wang，感谢观看</p>
+        </div>
+    </footer>
+
+    <script>
+        // 移动端导航菜单切换
+        const menuButton = document.getElementById('mobileMenuButton');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        menuButton.addEventListener('click', function() {
+            mobileMenu.classList.toggle('active');
+
+            // 切换图标
+            const icon = this.querySelector('i');
+            if (mobileMenu.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+
+        // 点击页面其他区域关闭移动端菜单
+        document.addEventListener('click', function(event) {
+            const isClickInsideNav = document.getElementById('mainNav').contains(event.target);
+
+            if (!isClickInsideNav && mobileMenu.classList.contains('active')) {
+                mobileMenu.classList.remove('active');
+                const icon = menuButton.querySelector('i');
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+
+                // 点击导航链接后关闭移动端菜单
+                if (mobileMenu.classList.contains('active')) {
+                    mobileMenu.classList.remove('active');
+                    const icon = menuButton.querySelector('i');
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            });
+        });
+
+        // 滚动时导航栏样式变化
+        window.addEventListener('scroll', function() {
+            const nav = document.getElementById('mainNav');
+            if (window.scrollY > 50) {
+                nav.classList.add('shadow-md');
+                nav.classList.remove('glassmorphism');
+                nav.style.background = 'rgba(255, 255, 255, 0.95)';
+            } else {
+                nav.classList.remove('shadow-md');
+                nav.classList.add('glassmorphism');
+                nav.style.background = '';
+            }
+        });
+    </script>
+</body>
+</html>
